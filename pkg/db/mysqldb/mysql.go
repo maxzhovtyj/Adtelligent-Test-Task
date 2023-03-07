@@ -7,7 +7,7 @@ import (
 )
 
 func NewClient() (*sql.DB, error) {
-	db, err := sql.Open("mysql", "user:password@/dbname")
+	db, err := sql.Open("mysql", "mysql:30042003@/adtelligent-db")
 	if err != nil {
 		panic(err)
 	}
