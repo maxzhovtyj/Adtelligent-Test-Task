@@ -1,6 +1,7 @@
 package app
 
 import (
+	"github.com/maxzhovtyj/Adtelligent-Test-Task/internal/config"
 	delivery "github.com/maxzhovtyj/Adtelligent-Test-Task/internal/delivery/http"
 	"github.com/maxzhovtyj/Adtelligent-Test-Task/internal/repository"
 	"github.com/maxzhovtyj/Adtelligent-Test-Task/internal/service"
@@ -10,6 +11,11 @@ import (
 )
 
 func Run() {
+	_, err := config.Init()
+	if err != nil {
+		log.Fatalf("failed to initialize config, %v", err)
+	}
+
 	dbClient, err := mysqldb.NewClient()
 	if err != nil {
 		return
