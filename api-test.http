@@ -1,20 +1,25 @@
-POST http://localhost:8080/auth/sign-in
+POST http://localhost:4321/auth/sign-in
 Accept: application/json
 
 {
-"phoneNumber": "+380683062975",
-"password": "qwerty123",
-"name":"Max"
+"email": "test@gmail.com",
+"password":"qwerty123"
 }
 
 ###
 
-POST http://localhost:8080/auth/sign-up
+POST http://localhost:4321/auth/sign-up
 Accept: application/json
 
 {
-"phoneNumber": "+380683062975",
-"password": "qwerty123",
-"name":"Max"
+"email": "test@gmail.com",
+"password":"qwerty123"
 }
+
+###
+
+GET http://localhost:4321/ping
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzgyOTg1MDYsImlhdCI6MTY3ODI5MTMwNiwiVXNlcklEIjoxfQ.qGnc-zP_C2icGPZMCSZdbLR1ZUkoolpwxjy4FzhiHDs
+
+{}
 

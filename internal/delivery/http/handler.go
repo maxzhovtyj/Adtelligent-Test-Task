@@ -24,5 +24,7 @@ func (h *Handler) Init() *http.ServeMux {
 	mux.HandleFunc("/auth/sign-in", h.signIn)
 	mux.HandleFunc("/auth/sign-up", h.signUp)
 
+	mux.HandleFunc("/ping", h.userIdentity(h.ping))
+
 	return mux
 }

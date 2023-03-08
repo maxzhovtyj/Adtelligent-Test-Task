@@ -2,6 +2,7 @@ package delivery
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/maxzhovtyj/Adtelligent-Test-Task/internal/models"
 	"net/http"
 )
@@ -12,6 +13,8 @@ type SignInInput struct {
 }
 
 func (h *Handler) signIn(writer http.ResponseWriter, request *http.Request) {
+	writer.Header().Set("Content-Type", "application/json")
+
 	var input SignInInput
 
 	err := json.NewDecoder(request.Body).Decode(&input)
@@ -47,6 +50,8 @@ type SignUpInput struct {
 }
 
 func (h *Handler) signUp(writer http.ResponseWriter, request *http.Request) {
+	writer.Header().Set("Content-Type", "application/json")
+
 	var input SignUpInput
 
 	err := json.NewDecoder(request.Body).Decode(&input)
@@ -64,5 +69,10 @@ func (h *Handler) signUp(writer http.ResponseWriter, request *http.Request) {
 		return
 	}
 
+	return
+}
+
+func (h *Handler) ping(writer http.ResponseWriter, request *http.Request) {
+	fmt.Println(request.Context().Value("userID"))
 	return
 }
