@@ -7,7 +7,9 @@ import (
 	"strings"
 )
 
-const userIDCtx = "userID"
+type key string
+
+const userIDCtx key = "userID"
 
 func (h *Handler) userIdentity(next http.HandlerFunc) http.HandlerFunc {
 	return func(writer http.ResponseWriter, request *http.Request) {
