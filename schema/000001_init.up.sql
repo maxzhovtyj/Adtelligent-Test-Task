@@ -2,14 +2,14 @@ CREATE TABLE IF NOT EXISTS sellers (
     id INT PRIMARY KEY,
     name VARCHAR(128) NOT NULL,
     phone_number VARCHAR(15) NOT NULL UNIQUE,
-    passoword VARCHAR(128) NOT NULL,
+    password VARCHAR(128) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS customers (
     id INT PRIMARY KEY,
     name VARCHAR(128) NOT NULL,
     phone_number VARCHAR(15) NOT NULL UNIQUE,
-    passoword VARCHAR(128) NOT NULL,
+    password VARCHAR(128) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS products (

@@ -35,3 +35,21 @@ func concat(str []string) string  {
 
 Выполненное тестовое задание разместите на гитхабе.
 Доступ к проекту предоставьте на аккаунт: https://github.com/Kirill-Shkodkin
+
+---
+
+Create .env file with the following values
+```dotenv
+HTTP_HOST=<host>
+
+DB_USER=<db_user>
+DB_PASSWORD=<db_password>
+
+JWT_SIGNING_KEY=<signign_key>
+PASSWORD_SALT=<password_salt>
+```
+
+Run MySQL database in Docker container
+```shell
+docker run -d -p 3306:3306 --name adtelligent-db -e MYSQL_ROOT_PASSWORD=<rootPassword> -e MYSQL_DATABASE=<database> -e MYSQL_USER=<user> -e MYSQL_PASSWORD=<password> mysql/mysql-server:latest
+```
