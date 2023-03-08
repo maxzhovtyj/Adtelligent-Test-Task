@@ -2,7 +2,6 @@ package delivery
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/maxzhovtyj/Adtelligent-Test-Task/internal/models"
 	"net/http"
 )
@@ -69,10 +68,5 @@ func (h *Handler) signUp(writer http.ResponseWriter, request *http.Request) {
 		return
 	}
 
-	return
-}
-
-func (h *Handler) ping(writer http.ResponseWriter, request *http.Request) {
-	fmt.Println(request.Context().Value("userID"))
 	return
 }

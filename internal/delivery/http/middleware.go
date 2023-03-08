@@ -37,6 +37,7 @@ func (h *Handler) userIdentity(next http.HandlerFunc) http.HandlerFunc {
 
 		userID, err := h.tokenManager.Parse(authHeaderParts[1])
 		if err != nil {
+			http.Error(writer, models.ErrInvalidAuthorizationHeader.Error(), http.StatusUnauthorized)
 			return
 		}
 

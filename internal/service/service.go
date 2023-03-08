@@ -13,8 +13,13 @@ type Users interface {
 	SignIn(user models.User) (string, string, error)
 }
 
+type Seller interface {
+	Create(seller models.Seller) error
+}
+
 type Service struct {
 	Users
+	Seller
 }
 
 func New(
@@ -24,6 +29,7 @@ func New(
 	hashing hash.PasswordHashing,
 ) *Service {
 	return &Service{
-		Users: NewUsersService(repo.Users, manager, accessTokenTTL, refreshTokenTTL, hashing),
+		Users:  NewUsersService(repo.Users, manager, accessTokenTTL, refreshTokenTTL, hashing),
+		Seller: NewSellersService(repo.Sellers),
 	}
 }

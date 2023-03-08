@@ -18,8 +18,12 @@ Accept: application/json
 
 ###
 
-GET http://localhost:4321/ping
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzgyOTg1MDYsImlhdCI6MTY3ODI5MTMwNiwiVXNlcklEIjoxfQ.qGnc-zP_C2icGPZMCSZdbLR1ZUkoolpwxjy4FzhiHDs
+POST http://localhost:4321/seller
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzgzMDYzMTAsImlhdCI6MTY3ODI5OTExMCwiVXNlcklEIjoxfQ.xJ3iQq2GaWDYYKwuYFEl25bZ25cAlcD5FVDUDU8kFJU
 
-{}
+{
+"name":"Max",
+"phoneNumber":"+380683062975"
+}
 

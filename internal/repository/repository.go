@@ -14,16 +14,22 @@ const (
 )
 
 type Users interface {
-	CreateUser(seller models.User) error
+	CreateUser(user models.User) error
 	GetByCredentials(email, password string) (int, error)
+}
+
+type Sellers interface {
+	Create(seller models.Seller) error
 }
 
 type Repository struct {
 	Users
+	Sellers
 }
 
 func New(db *sql.DB) *Repository {
 	return &Repository{
-		Users: NewUsersRepo(db),
+		Users:   NewUsersRepo(db),
+		Sellers: NewSellersRepo(db),
 	}
 }
