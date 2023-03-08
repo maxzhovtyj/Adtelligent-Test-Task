@@ -4,12 +4,12 @@ import (
 	"github.com/maxzhovtyj/Adtelligent-Test-Task/internal/config"
 	delivery "github.com/maxzhovtyj/Adtelligent-Test-Task/internal/delivery/http"
 	"github.com/maxzhovtyj/Adtelligent-Test-Task/internal/repository"
+	"github.com/maxzhovtyj/Adtelligent-Test-Task/internal/server"
 	"github.com/maxzhovtyj/Adtelligent-Test-Task/internal/service"
 	"github.com/maxzhovtyj/Adtelligent-Test-Task/pkg/auth"
 	"github.com/maxzhovtyj/Adtelligent-Test-Task/pkg/db/mysqldb"
 	"github.com/maxzhovtyj/Adtelligent-Test-Task/pkg/hash"
 	"log"
-	"net/http"
 )
 
 func Run() {
@@ -20,7 +20,7 @@ func Run() {
 
 	dbClient, err := mysqldb.NewClient(cfg.DB.User, cfg.DB.Password, cfg.DB.Database)
 	if err != nil {
-		return
+		log.Fatalf("failed while connecting to database, %v", err)
 	}
 
 	tokenManager, err := auth.NewManager(cfg.Auth.JWT.SigningKey)
@@ -37,5 +37,9 @@ func Run() {
 	services := service.New(repo, tokenManager, cfg.Auth.JWT.AccessTokenTTL, cfg.Auth.JWT.RefreshTokenTTL, hashing)
 	handler := delivery.NewHandler(services)
 
-	log.Fatal(http.ListenAndServe(":8080", handler.Init()))
+	srv := server.New(cfg, handler.Init())
+
+	if err = srv.Run(); err != nil {
+		log.Fatal(err)
+	}
 }
