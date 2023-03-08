@@ -12,8 +12,8 @@ const (
 	httpHostEnv      = "HTTP_HOST"
 	passwordSaltEnv  = "PASSWORD_SALT"
 	jwtSigningKeyEnv = "JWT_SIGNING_KEY"
-	mySqlUserEnv     = "DB_USER"
-	mySqlPasswordEnv = "DB_PASSWORD"
+	mySQLUserEnv     = "DB_USER"
+	mySQLPasswordEnv = "DB_PASSWORD"
 )
 
 type (
@@ -71,8 +71,8 @@ func setFromEnv(cfg *Config) {
 	cfg.Auth.PasswordSalt = os.Getenv(passwordSaltEnv)
 	cfg.Auth.JWT.SigningKey = os.Getenv(jwtSigningKeyEnv)
 
-	cfg.DB.User = os.Getenv(mySqlUserEnv)
-	cfg.DB.Password = os.Getenv(mySqlPasswordEnv)
+	cfg.DB.User = os.Getenv(mySQLUserEnv)
+	cfg.DB.Password = os.Getenv(mySQLPasswordEnv)
 }
 
 func unmarshalConfig(cfg *Config) error {

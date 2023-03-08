@@ -5,17 +5,17 @@ import (
 	"net/http"
 )
 
-type handler struct {
+type Handler struct {
 	services *service.Service
 }
 
-func NewHandler(services *service.Service) *handler {
-	return &handler{
+func NewHandler(services *service.Service) *Handler {
+	return &Handler{
 		services: services,
 	}
 }
 
-func (h *handler) Init() *http.ServeMux {
+func (h *Handler) Init() *http.ServeMux {
 	mux := http.NewServeMux()
 
 	mux.HandleFunc("/auth/sign-in", h.signIn)

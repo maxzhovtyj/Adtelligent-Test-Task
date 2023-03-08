@@ -11,7 +11,7 @@ type SignInInput struct {
 	Password    string `json:"password"`
 }
 
-func (h *handler) signIn(writer http.ResponseWriter, request *http.Request) {
+func (h *Handler) signIn(writer http.ResponseWriter, request *http.Request) {
 	var input SignInInput
 
 	err := json.NewDecoder(request.Body).Decode(&input)
@@ -38,7 +38,7 @@ type SignUpInput struct {
 	Password    string `json:"password"`
 }
 
-func (h *handler) signUp(writer http.ResponseWriter, request *http.Request) {
+func (h *Handler) signUp(writer http.ResponseWriter, request *http.Request) {
 	var input SignUpInput
 
 	err := json.NewDecoder(request.Body).Decode(&input)

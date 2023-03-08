@@ -3,16 +3,16 @@ package mysqldb
 import (
 	"database/sql"
 	"fmt"
-	_ "github.com/go-sql-driver/mysql"
+	_ "github.com/go-sql-driver/mysql" // revive
 	"time"
 )
 
-const mySqlDriver = "mysql"
+const mySQLDriver = "mysql"
 
 func NewClient(user, password, dbName string) (*sql.DB, error) {
 	dsn := fmt.Sprintf("%s:%s@/%s", user, password, dbName)
 
-	db, err := sql.Open(mySqlDriver, dsn)
+	db, err := sql.Open(mySQLDriver, dsn)
 	if err != nil {
 		panic(err)
 	}
