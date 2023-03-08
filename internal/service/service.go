@@ -1,20 +1,29 @@
 package service
 
 import (
+	"github.com/maxzhovtyj/Adtelligent-Test-Task/internal/models"
+	"github.com/maxzhovtyj/Adtelligent-Test-Task/internal/repository"
 	"github.com/maxzhovtyj/Adtelligent-Test-Task/pkg/auth"
 	"github.com/maxzhovtyj/Adtelligent-Test-Task/pkg/hash"
 	"time"
 )
 
-type Service struct {
-	tokenManager auth.TokenManager
-
-	accessTokenTTL  time.Duration
-	refreshTokenTTL time.Duration
-
-	hashing hash.PasswordHashing
+type Users interface {
+	SignUp(seller models.Seller) error
+	SignIn(seller models.Seller) error
 }
 
-func New() *Service {
-	return &Service{}
+type Service struct {
+	Users
+}
+
+func New(
+	repo *repository.Repository,
+	manager auth.TokenManager,
+	accessTokenTTL, refreshTokenTTL time.Duration,
+	hashing hash.PasswordHashing,
+) *Service {
+	return &Service{
+		Users: NewUsersService(repo.Users, manager, accessTokenTTL, refreshTokenTTL, hashing),
+	}
 }

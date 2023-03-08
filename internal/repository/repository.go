@@ -16,12 +16,12 @@ type Users interface {
 	CreateSeller(seller models.Seller) error
 }
 
-type repository struct {
+type Repository struct {
 	Users
 }
 
-func New(db *sql.DB) *repository {
-	return &repository{
+func New(db *sql.DB) *Repository {
+	return &Repository{
 		Users: NewUsersRepo(db),
 	}
 }
