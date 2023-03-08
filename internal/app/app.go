@@ -11,12 +11,12 @@ import (
 )
 
 func Run() {
-	_, err := config.Init()
+	cfg, err := config.Init()
 	if err != nil {
 		log.Fatalf("failed to initialize config, %v", err)
 	}
 
-	dbClient, err := mysqldb.NewClient()
+	dbClient, err := mysqldb.NewClient(cfg.DB.User, cfg.DB.Password, cfg.DB.Database)
 	if err != nil {
 		return
 	}

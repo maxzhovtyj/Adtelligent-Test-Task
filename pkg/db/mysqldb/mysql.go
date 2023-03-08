@@ -2,12 +2,17 @@ package mysqldb
 
 import (
 	"database/sql"
+	"fmt"
 	_ "github.com/go-sql-driver/mysql"
 	"time"
 )
 
-func NewClient() (*sql.DB, error) {
-	db, err := sql.Open("mysql", "mysql:30042003@/adtelligent-db")
+const mySqlDriver = "mysql"
+
+func NewClient(user, password, dbName string) (*sql.DB, error) {
+	dsn := fmt.Sprintf("%s:%s@/%s", user, password, dbName)
+
+	db, err := sql.Open(mySqlDriver, dsn)
 	if err != nil {
 		panic(err)
 	}
@@ -16,5 +21,9 @@ func NewClient() (*sql.DB, error) {
 	db.SetMaxOpenConns(10)
 	db.SetMaxIdleConns(10)
 
-	return db, err
+	if err = db.Ping(); err != nil {
+		return nil, err
+	}
+
+	return db, nil
 }
