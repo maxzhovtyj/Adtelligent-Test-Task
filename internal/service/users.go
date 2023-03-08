@@ -34,13 +34,13 @@ func NewUsersService(
 	}
 }
 
-func (s *UsersService) SignUpSeller(seller models.Seller) (err error) {
-	seller.Password, err = s.hashing.Hash(seller.Password)
+func (s *UsersService) SignUp(user models.User) (err error) {
+	user.Password, err = s.hashing.Hash(user.Password)
 	if err != nil {
 		return fmt.Errorf("failed to create password hash, %v", err)
 	}
 
-	err = s.repo.CreateSeller(seller)
+	err = s.repo.CreateUser(user)
 	if err != nil {
 		return fmt.Errorf("failed to create seller, %v", err)
 	}
@@ -48,14 +48,26 @@ func (s *UsersService) SignUpSeller(seller models.Seller) (err error) {
 	return err
 }
 
-func (s *UsersService) SignInSeller(seller models.Seller) error {
-	return nil
-}
+func (s *UsersService) SignIn(user models.User) (string, string, error) {
+	passwordHash, err := s.hashing.Hash(user.Password)
+	if err != nil {
+		return "", "", err
+	}
 
-func (s *UsersService) SignUpCustomer(customer models.Customer) error {
-	return nil
-}
+	userID, err := s.repo.GetByCredentials(user.Email, passwordHash)
+	if err != nil {
+		return "", "", fmt.Errorf("failed to find user with given credentials, %v", err)
+	}
 
-func (s *UsersService) SignInCustomer(customer models.Customer) error {
-	return nil
+	accessToken, err := s.tokenManager.NewJWT(userID, s.accessTokenTTL)
+	if err != nil {
+		return "", "", err
+	}
+
+	refreshToken, err := s.tokenManager.NewRefreshToken()
+	if err != nil {
+		return "", "", err
+	}
+
+	return accessToken, refreshToken, nil
 }

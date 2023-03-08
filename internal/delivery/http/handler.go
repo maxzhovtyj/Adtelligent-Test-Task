@@ -2,16 +2,19 @@ package delivery
 
 import (
 	"github.com/maxzhovtyj/Adtelligent-Test-Task/internal/service"
+	"github.com/maxzhovtyj/Adtelligent-Test-Task/pkg/auth"
 	"net/http"
 )
 
 type Handler struct {
-	services *service.Service
+	services     *service.Service
+	tokenManager auth.TokenManager
 }
 
-func NewHandler(services *service.Service) *Handler {
+func NewHandler(services *service.Service, manager auth.TokenManager) *Handler {
 	return &Handler{
-		services: services,
+		services:     services,
+		tokenManager: manager,
 	}
 }
 

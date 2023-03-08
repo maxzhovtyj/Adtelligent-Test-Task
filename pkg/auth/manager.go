@@ -11,13 +11,18 @@ import (
 
 // TokenManager provides logic for JWT & Refresh tokens generation and parsing.
 type TokenManager interface {
-	NewJWT(userID string, ttl time.Duration) (string, error)
-	Parse(accessToken string) (string, error)
+	NewJWT(userID int, ttl time.Duration) (string, error)
+	Parse(accessToken string) (int, error)
 	NewRefreshToken() (string, error)
 }
 
 type Manager struct {
 	signingKey string
+}
+
+type tokenClaims struct {
+	jwt.StandardClaims
+	UserID int
 }
 
 func NewManager(signingKey string) (*Manager, error) {
@@ -28,17 +33,20 @@ func NewManager(signingKey string) (*Manager, error) {
 	return &Manager{signingKey: signingKey}, nil
 }
 
-func (m *Manager) NewJWT(userID string, ttl time.Duration) (string, error) {
-	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.StandardClaims{
-		ExpiresAt: time.Now().Add(ttl).Unix(),
-		Subject:   userID,
+func (m *Manager) NewJWT(userID int, ttl time.Duration) (string, error) {
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, tokenClaims{
+		StandardClaims: jwt.StandardClaims{
+			ExpiresAt: time.Now().Add(ttl).Unix(),
+			IssuedAt:  time.Now().Unix(),
+		},
+		UserID: userID,
 	})
 
 	return token.SignedString([]byte(m.signingKey))
 }
 
-func (m *Manager) Parse(accessToken string) (string, error) {
-	token, err := jwt.Parse(accessToken, func(token *jwt.Token) (i interface{}, err error) {
+func (m *Manager) Parse(accessToken string) (int, error) {
+	token, err := jwt.ParseWithClaims(accessToken, &tokenClaims{}, func(token *jwt.Token) (i interface{}, err error) {
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 			return nil, fmt.Errorf("unexpected signing method: %v", token.Header["alg"])
 		}
@@ -46,15 +54,15 @@ func (m *Manager) Parse(accessToken string) (string, error) {
 		return []byte(m.signingKey), nil
 	})
 	if err != nil {
-		return "", err
+		return 0, err
 	}
 
-	claims, ok := token.Claims.(jwt.MapClaims)
+	claims, ok := token.Claims.(*tokenClaims)
 	if !ok {
-		return "", fmt.Errorf("error get user claims from token")
+		return 0, errors.New("token claims are not of type *tokenClaims")
 	}
 
-	return claims["sub"].(string), nil
+	return claims.UserID, nil
 }
 
 func (m *Manager) NewRefreshToken() (string, error) {

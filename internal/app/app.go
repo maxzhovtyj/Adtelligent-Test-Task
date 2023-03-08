@@ -35,7 +35,7 @@ func Run() {
 
 	repo := repository.New(dbClient)
 	services := service.New(repo, tokenManager, cfg.Auth.JWT.AccessTokenTTL, cfg.Auth.JWT.RefreshTokenTTL, hashing)
-	handler := delivery.NewHandler(services)
+	handler := delivery.NewHandler(services, tokenManager)
 
 	srv := server.New(cfg, handler.Init())
 

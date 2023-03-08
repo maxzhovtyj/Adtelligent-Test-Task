@@ -6,14 +6,16 @@ import (
 )
 
 const (
+	usersTable     = "users"
+	sellersTable   = "sellers"
+	customersTable = "customers"
 	ordersTable    = "orders"
 	productsTable  = "products"
-	customersTable = "customers"
-	sellersTable   = "sellers"
 )
 
 type Users interface {
-	CreateSeller(seller models.Seller) error
+	CreateUser(seller models.User) error
+	GetByCredentials(email, password string) (int, error)
 }
 
 type Repository struct {

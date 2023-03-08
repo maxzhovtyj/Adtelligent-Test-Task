@@ -7,8 +7,8 @@ import (
 )
 
 type SignInInput struct {
-	PhoneNumber string `json:"phoneNumber"`
-	Password    string `json:"password"`
+	Email    string `json:"email"`
+	Password string `json:"password"`
 }
 
 func (h *Handler) signIn(writer http.ResponseWriter, request *http.Request) {
@@ -20,12 +20,21 @@ func (h *Handler) signIn(writer http.ResponseWriter, request *http.Request) {
 		return
 	}
 
-	err = h.services.SignInSeller(models.Seller{
-		PhoneNumber: input.PhoneNumber,
-		Password:    input.Password,
+	accessToken, refreshToken, err := h.services.Users.SignIn(models.User{
+		Email:    input.Email,
+		Password: input.Password,
 	})
 	if err != nil {
 		http.Error(writer, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	err = json.NewEncoder(writer).Encode(map[string]string{
+		"accessToken":  accessToken,
+		"refreshToken": refreshToken,
+	})
+	if err != nil {
+		http.Error(writer, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
@@ -33,9 +42,8 @@ func (h *Handler) signIn(writer http.ResponseWriter, request *http.Request) {
 }
 
 type SignUpInput struct {
-	Name        string `json:"name"`
-	PhoneNumber string `json:"phoneNumber"`
-	Password    string `json:"password"`
+	Email    string `json:"email"`
+	Password string `json:"password"`
 }
 
 func (h *Handler) signUp(writer http.ResponseWriter, request *http.Request) {
@@ -47,10 +55,9 @@ func (h *Handler) signUp(writer http.ResponseWriter, request *http.Request) {
 		return
 	}
 
-	err = h.services.SignUpSeller(models.Seller{
-		Name:        input.Name,
-		PhoneNumber: input.PhoneNumber,
-		Password:    input.Password,
+	err = h.services.SignUp(models.User{
+		Email:    input.Email,
+		Password: input.Password,
 	})
 	if err != nil {
 		http.Error(writer, err.Error(), http.StatusBadRequest)
