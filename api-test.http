@@ -27,3 +27,15 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzgzMDYzM
 "phoneNumber":"+380683062975"
 }
 
+###
+
+POST http://localhost:4321/product
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzgzMTEwNDQsImlhdCI6MTY3ODMwMzg0NCwiVXNlcklEIjoxfQ.SZMhG-OSSBHqHir2gNFHvQIgJyeszXLZYscA8q3LhTw
+
+{
+"title": "Laptop",
+"sellerId": 1,
+"price":14.25
+}
+

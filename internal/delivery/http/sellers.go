@@ -25,7 +25,7 @@ func (h *Handler) newSeller(writer http.ResponseWriter, request *http.Request) {
 		return
 	}
 
-	err = h.services.Seller.Create(models.Seller{
+	err = h.services.Sellers.Create(models.Seller{
 		Name:        input.Name,
 		PhoneNumber: input.PhoneNumber,
 	})

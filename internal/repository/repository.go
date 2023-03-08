@@ -22,14 +22,20 @@ type Sellers interface {
 	Create(seller models.Seller) error
 }
 
+type Products interface {
+	Create(product models.Product) error
+}
+
 type Repository struct {
 	Users
 	Sellers
+	Products
 }
 
 func New(db *sql.DB) *Repository {
 	return &Repository{
-		Users:   NewUsersRepo(db),
-		Sellers: NewSellersRepo(db),
+		Users:    NewUsersRepo(db),
+		Sellers:  NewSellersRepo(db),
+		Products: NewProductsRepo(db),
 	}
 }

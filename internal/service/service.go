@@ -13,13 +13,18 @@ type Users interface {
 	SignIn(user models.User) (string, string, error)
 }
 
-type Seller interface {
+type Sellers interface {
 	Create(seller models.Seller) error
+}
+
+type Products interface {
+	Create(product models.Product) error
 }
 
 type Service struct {
 	Users
-	Seller
+	Sellers
+	Products
 }
 
 func New(
@@ -29,7 +34,8 @@ func New(
 	hashing hash.PasswordHashing,
 ) *Service {
 	return &Service{
-		Users:  NewUsersService(repo.Users, manager, accessTokenTTL, refreshTokenTTL, hashing),
-		Seller: NewSellersService(repo.Sellers),
+		Users:    NewUsersService(repo.Users, manager, accessTokenTTL, refreshTokenTTL, hashing),
+		Sellers:  NewSellersService(repo.Sellers),
+		Products: NewProductsService(repo.Products),
 	}
 }

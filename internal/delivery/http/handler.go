@@ -26,5 +26,7 @@ func (h *Handler) Init() *http.ServeMux {
 
 	mux.HandleFunc("/seller", h.userIdentity(h.newSeller))
 
+	mux.HandleFunc("/product", h.userIdentity(h.newProduct))
+
 	return mux
 }
