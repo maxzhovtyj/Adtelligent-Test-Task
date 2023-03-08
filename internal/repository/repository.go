@@ -1,8 +1,17 @@
 package repository
 
-type repository struct {
+import "database/sql"
+
+type Users interface {
+	Create()
 }
 
-func New() *repository {
-	return &repository{}
+type repository struct {
+	Users
+}
+
+func New(db *sql.DB) *repository {
+	return &repository{
+		Users: NewUsersRepo(db),
+	}
 }

@@ -10,12 +10,12 @@ import (
 )
 
 func Run() {
-	_, err := mysqldb.NewClient()
+	dbClient, err := mysqldb.NewClient()
 	if err != nil {
 		return
 	}
 
-	_ = repository.New()
+	_ = repository.New(dbClient)
 	_ = service.New()
 	handler := delivery.NewHandler()
 
