@@ -1,6 +1,7 @@
 package service
 
 import (
+	"fmt"
 	"github.com/maxzhovtyj/Adtelligent-Test-Task/internal/models"
 	"github.com/maxzhovtyj/Adtelligent-Test-Task/internal/repository"
 	"github.com/maxzhovtyj/Adtelligent-Test-Task/pkg/auth"
@@ -33,11 +34,28 @@ func NewUsersService(
 	}
 }
 
-func (s *UsersService) SignUp(seller models.Seller) error {
+func (s *UsersService) SignUpSeller(seller models.Seller) (err error) {
+	seller.Password, err = s.hashing.Hash(seller.Password)
+	if err != nil {
+		return fmt.Errorf("failed to create password hash, %v", err)
+	}
 
+	err = s.repo.CreateSeller(seller)
+	if err != nil {
+		return fmt.Errorf("failed to create seller, %v", err)
+	}
+
+	return err
+}
+
+func (s *UsersService) SignInSeller(seller models.Seller) error {
 	return nil
 }
 
-func (s *UsersService) SignIn(seller models.Seller) error {
+func (s *UsersService) SignUpCustomer(customer models.Customer) error {
+	return nil
+}
+
+func (s *UsersService) SignInCustomer(customer models.Customer) error {
 	return nil
 }

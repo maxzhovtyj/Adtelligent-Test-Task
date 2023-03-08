@@ -9,8 +9,11 @@ import (
 )
 
 type Users interface {
-	SignUp(seller models.Seller) error
-	SignIn(seller models.Seller) error
+	SignUpSeller(seller models.Seller) error
+	SignInSeller(seller models.Seller) error
+
+	SignUpCustomer(customer models.Customer) error
+	SignInCustomer(customer models.Customer) error
 }
 
 type Service struct {

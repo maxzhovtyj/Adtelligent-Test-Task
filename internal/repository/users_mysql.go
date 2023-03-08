@@ -17,9 +17,12 @@ func NewUsersRepo(db *sql.DB) *UsersRepo {
 }
 
 func (r *UsersRepo) CreateSeller(seller models.Seller) error {
-	queryInsertSeller := fmt.Sprintf("INSERT INTO %s (name, phone_number) VALUES (?, ?)", sellersTable)
+	queryInsertSeller := fmt.Sprintf(
+		"INSERT INTO %s (name, phone_number, password) VALUES (?, ?, ?)",
+		sellersTable,
+	)
 
-	row := r.db.QueryRow(queryInsertSeller, seller.Name, seller.PhoneNumber)
+	row := r.db.QueryRow(queryInsertSeller, seller.Name, seller.PhoneNumber, seller.Password)
 	if row.Err() != nil {
 		return row.Err()
 	}

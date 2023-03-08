@@ -1,14 +1,18 @@
 package delivery
 
 import (
+	"github.com/maxzhovtyj/Adtelligent-Test-Task/internal/service"
 	"net/http"
 )
 
 type handler struct {
+	services *service.Service
 }
 
-func NewHandler() *handler {
-	return &handler{}
+func NewHandler(services *service.Service) *handler {
+	return &handler{
+		services: services,
+	}
 }
 
 func (h *handler) Init() *http.ServeMux {

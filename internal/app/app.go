@@ -34,8 +34,8 @@ func Run() {
 	}
 
 	repo := repository.New(dbClient)
-	_ = service.New(repo, tokenManager, cfg.Auth.JWT.AccessTokenTTL, cfg.Auth.JWT.RefreshTokenTTL, hashing)
-	handler := delivery.NewHandler()
+	services := service.New(repo, tokenManager, cfg.Auth.JWT.AccessTokenTTL, cfg.Auth.JWT.RefreshTokenTTL, hashing)
+	handler := delivery.NewHandler(services)
 
 	log.Fatal(http.ListenAndServe(":8080", handler.Init()))
 }
