@@ -14,6 +14,20 @@ func NewProductsRepo(db *sql.DB) *ProductsRepo {
 	return &ProductsRepo{db: db}
 }
 
+func (r *ProductsRepo) Update(product models.Product) error {
+	queryUpdateProduct := fmt.Sprintf(
+		"UPDATE %s SET title = ?, price = ?, seller_id = ? WHERE id = ?",
+		productsTable,
+	)
+
+	_, err := r.db.Exec(queryUpdateProduct, product.Title, product.Price, product.SellerID, product.ID)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (r *ProductsRepo) Get(id int) (models.Product, error) {
 	var product models.Product
 

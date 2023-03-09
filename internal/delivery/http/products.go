@@ -63,9 +63,37 @@ func (h *Handler) newProduct(writer http.ResponseWriter, request *http.Request) 
 	}
 }
 
+type UpdateProductInput struct {
+	ID       int     `json:"ID"`
+	Title    string  `json:"title"`
+	Price    float64 `json:"price"`
+	SellerID int     `json:"sellerID"`
+}
+
 func (h *Handler) updateProduct(writer http.ResponseWriter, request *http.Request) {
-	//TODO
-	http.Error(writer, "not implemented", http.StatusNotImplemented)
+	var input UpdateProductInput
+
+	if err := json.NewDecoder(request.Body).Decode(&input); err != nil {
+		http.Error(writer, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	err := h.services.Update(models.Product{
+		ID:       input.ID,
+		Title:    input.Title,
+		SellerID: input.SellerID,
+		Price:    input.Price,
+	})
+	if err != nil {
+		http.Error(writer, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	_, err = writer.Write([]byte("product successfully updated"))
+	if err != nil {
+		http.Error(writer, err.Error(), http.StatusInternalServerError)
+		return
+	}
 }
 
 func (h *Handler) deleteProduct(writer http.ResponseWriter, request *http.Request) {
