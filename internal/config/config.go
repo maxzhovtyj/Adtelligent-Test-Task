@@ -9,6 +9,13 @@ import (
 )
 
 const (
+	configsDir = "configs"
+	configFile = "config"
+
+	httpKey = "http"
+	authKey = "auth"
+	dbKey   = "db"
+
 	httpHostEnv      = "HTTP_HOST"
 	passwordSaltEnv  = "PASSWORD_SALT"
 	jwtSigningKeyEnv = "JWT_SIGNING_KEY"
@@ -76,15 +83,15 @@ func setFromEnv(cfg *Config) {
 }
 
 func unmarshalConfig(cfg *Config) error {
-	if err := viper.UnmarshalKey("http", &cfg.HTTP); err != nil {
+	if err := viper.UnmarshalKey(httpKey, &cfg.HTTP); err != nil {
 		return err
 	}
 
-	if err := viper.UnmarshalKey("auth", &cfg.Auth.JWT); err != nil {
+	if err := viper.UnmarshalKey(authKey, &cfg.Auth.JWT); err != nil {
 		return err
 	}
 
-	if err := viper.UnmarshalKey("db", &cfg.DB); err != nil {
+	if err := viper.UnmarshalKey(dbKey, &cfg.DB); err != nil {
 		return err
 	}
 
@@ -92,8 +99,8 @@ func unmarshalConfig(cfg *Config) error {
 }
 
 func parseConfigFile() error {
-	viper.AddConfigPath("configs")
-	viper.SetConfigName("config")
+	viper.AddConfigPath(configsDir)
+	viper.SetConfigName(configFile)
 
 	if err := viper.ReadInConfig(); err != nil {
 		return err
