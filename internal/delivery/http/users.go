@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"github.com/maxzhovtyj/Adtelligent-Test-Task/internal/models"
 	"net/http"
+	"net/mail"
 )
 
 type SignInInput struct {
@@ -18,6 +19,17 @@ func (h *Handler) signIn(writer http.ResponseWriter, request *http.Request) {
 
 	err := json.NewDecoder(request.Body).Decode(&input)
 	if err != nil {
+		http.Error(writer, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	_, err = mail.ParseAddress(input.Email)
+	if err != nil {
+		http.Error(writer, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	if len(input.Password) < 4 {
 		http.Error(writer, err.Error(), http.StatusBadRequest)
 		return
 	}
@@ -57,6 +69,17 @@ func (h *Handler) signUp(writer http.ResponseWriter, request *http.Request) {
 		return
 	}
 
+	_, err = mail.ParseAddress(input.Email)
+	if err != nil {
+		http.Error(writer, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	if len(input.Password) < 4 {
+		http.Error(writer, "invalid password length", http.StatusBadRequest)
+		return
+	}
+
 	err = h.services.SignUp(models.User{
 		Email:    input.Email,
 		Password: input.Password,
@@ -65,6 +88,4 @@ func (h *Handler) signUp(writer http.ResponseWriter, request *http.Request) {
 		http.Error(writer, err.Error(), http.StatusBadRequest)
 		return
 	}
-
-	return
 }

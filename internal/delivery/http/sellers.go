@@ -20,8 +20,13 @@ func (h *Handler) newSeller(writer http.ResponseWriter, request *http.Request) {
 		return
 	}
 
-	if input.Name == "" || input.PhoneNumber == "" {
-		http.Error(writer, models.ErrInvalidInputBody.Error(), http.StatusBadRequest)
+	if input.Name == "" {
+		http.Error(writer, "invalid seller name", http.StatusBadRequest)
+		return
+	}
+
+	if input.PhoneNumber == "" {
+		http.Error(writer, "invalid seller phone number", http.StatusBadRequest)
 		return
 	}
 

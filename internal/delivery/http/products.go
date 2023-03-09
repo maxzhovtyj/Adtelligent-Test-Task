@@ -38,11 +38,28 @@ type NewProductInput struct {
 }
 
 func (h *Handler) newProduct(writer http.ResponseWriter, request *http.Request) {
+	writer.Header().Set("Content-Type", "application/json")
+
 	var input NewProductInput
 
 	err := json.NewDecoder(request.Body).Decode(&input)
 	if err != nil {
-		http.Error(writer, models.ErrInvalidInputBody.Error(), http.StatusInternalServerError)
+		http.Error(writer, models.ErrInvalidInputBody.Error(), http.StatusBadRequest)
+		return
+	}
+
+	if input.SellerID <= 0 {
+		http.Error(writer, "invalid seller id", http.StatusBadRequest)
+		return
+	}
+
+	if input.Title == "" {
+		http.Error(writer, "invalid product title", http.StatusBadRequest)
+		return
+	}
+
+	if input.Price <= 0 {
+		http.Error(writer, "invalid product price", http.StatusBadRequest)
 		return
 	}
 
@@ -71,10 +88,32 @@ type UpdateProductInput struct {
 }
 
 func (h *Handler) updateProduct(writer http.ResponseWriter, request *http.Request) {
+	writer.Header().Set("Content-Type", "application/json")
+
 	var input UpdateProductInput
 
 	if err := json.NewDecoder(request.Body).Decode(&input); err != nil {
 		http.Error(writer, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	if input.ID <= 0 {
+		http.Error(writer, "invalid product id", http.StatusBadRequest)
+		return
+	}
+
+	if input.SellerID <= 0 {
+		http.Error(writer, "invalid seller id", http.StatusBadRequest)
+		return
+	}
+
+	if input.Title == "" {
+		http.Error(writer, "invalid product title", http.StatusBadRequest)
+		return
+	}
+
+	if input.Price <= 0 {
+		http.Error(writer, "invalid product price", http.StatusBadRequest)
 		return
 	}
 
