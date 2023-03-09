@@ -23,6 +23,7 @@ type Sellers interface {
 }
 
 type Products interface {
+	Get(id int) (models.Product, error)
 	Create(product models.Product) error
 	Delete(productId int) error
 }

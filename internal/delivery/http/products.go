@@ -8,8 +8,27 @@ import (
 )
 
 func (h *Handler) getProduct(writer http.ResponseWriter, request *http.Request) {
-	//TODO
-	http.Error(writer, "not implemented", http.StatusNotImplemented)
+	writer.Header().Set("Content-Type", "application/json")
+
+	productID := request.URL.Query().Get("id")
+
+	productIDint, err := strconv.Atoi(productID)
+	if err != nil {
+		http.Error(writer, "invalid product id", http.StatusBadRequest)
+		return
+	}
+
+	product, err := h.services.Products.Get(productIDint)
+	if err != nil {
+		http.Error(writer, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	err = json.NewEncoder(writer).Encode(&product)
+	if err != nil {
+		http.Error(writer, err.Error(), http.StatusInternalServerError)
+		return
+	}
 }
 
 type NewProductInput struct {

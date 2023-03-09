@@ -39,8 +39,6 @@ func (h *Handler) signIn(writer http.ResponseWriter, request *http.Request) {
 		http.Error(writer, err.Error(), http.StatusInternalServerError)
 		return
 	}
-
-	return
 }
 
 type SignUpInput struct {

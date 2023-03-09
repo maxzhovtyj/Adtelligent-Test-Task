@@ -47,3 +47,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzgzNjU2N
 
 {}
 
+###
+
+GET http://localhost:4321/product/get?id=3
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzgzNjU2NTksImlhdCI6MTY3ODM1ODQ1OSwiVXNlcklEIjoxfQ.aVgtOs2XOIUeZbaNu_dAOQpUNAczSJpyh4k6RpJNMgg
+
+{}
+

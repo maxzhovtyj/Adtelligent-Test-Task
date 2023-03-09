@@ -13,6 +13,10 @@ func NewProductsService(repo repository.Products) *ProductsService {
 	return &ProductsService{repo: repo}
 }
 
+func (s *ProductsService) Get(id int) (models.Product, error) {
+	return s.repo.Get(id)
+}
+
 func (s *ProductsService) Create(product models.Product) error {
 	return s.repo.Create(product)
 }
