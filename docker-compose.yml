@@ -14,10 +14,10 @@ services:
     image: mysql:5.7
     restart: always
     environment:
-      MYSQL_DATABASE: 'adtelligent-db'
+      MYSQL_DATABASE: 'adtelligent'
       MYSQL_USER: 'user'
-      MYSQL_PASSWORD: '30042003'
-      MYSQL_ROOT_PASSWORD: '30042003'
+      MYSQL_PASSWORD: 'qwerty123'
+      MYSQL_ROOT_PASSWORD: 'qwerty123'
     ports:
       - '3306:3306'
     expose:

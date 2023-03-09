@@ -44,6 +44,8 @@ type (
 	DBConfig struct {
 		User     string
 		Password string
+		Host     string `mapstructure:"host"`
+		Port     string `mapstructure:"port"`
 		Database string `mapstructure:"name"`
 	}
 

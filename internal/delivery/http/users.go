@@ -39,7 +39,7 @@ func (h *Handler) signIn(writer http.ResponseWriter, request *http.Request) {
 		Password: input.Password,
 	})
 	if err != nil {
-		http.Error(writer, err.Error(), http.StatusBadRequest)
+		http.Error(writer, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
@@ -85,7 +85,7 @@ func (h *Handler) signUp(writer http.ResponseWriter, request *http.Request) {
 		Password: input.Password,
 	})
 	if err != nil {
-		http.Error(writer, err.Error(), http.StatusBadRequest)
+		http.Error(writer, err.Error(), http.StatusInternalServerError)
 		return
 	}
 }

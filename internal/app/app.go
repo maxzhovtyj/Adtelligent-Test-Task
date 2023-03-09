@@ -20,7 +20,7 @@ func Run() {
 	}
 
 	log.Println("initializing database mySQL client")
-	dbClient, err := mysqldb.NewClient(cfg.DB.User, cfg.DB.Password, cfg.DB.Database)
+	dbClient, err := mysqldb.NewClient(&cfg.DB)
 	if err != nil {
 		log.Fatalf("failed while connecting to database, %v", err)
 	}
