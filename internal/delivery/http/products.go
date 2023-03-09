@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"github.com/maxzhovtyj/Adtelligent-Test-Task/internal/models"
 	"net/http"
+	"strconv"
 )
 
 func (h *Handler) getProduct(writer http.ResponseWriter, request *http.Request) {
@@ -49,6 +50,23 @@ func (h *Handler) updateProduct(writer http.ResponseWriter, request *http.Reques
 }
 
 func (h *Handler) deleteProduct(writer http.ResponseWriter, request *http.Request) {
-	//TODO
-	http.Error(writer, "not implemented", http.StatusNotImplemented)
+	productID := request.URL.Query().Get("id")
+
+	productIDInt, err := strconv.Atoi(productID)
+	if err != nil {
+		http.Error(writer, "invalid id", http.StatusBadRequest)
+		return
+	}
+
+	err = h.services.Products.Delete(productIDInt)
+	if err != nil {
+		http.Error(writer, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	_, err = writer.Write([]byte("product successfully deleted"))
+	if err != nil {
+		http.Error(writer, err.Error(), http.StatusInternalServerError)
+		return
+	}
 }

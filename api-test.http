@@ -29,13 +29,21 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzgzMDYzM
 
 ###
 
-POST http://localhost:4321/product
+POST http://localhost:4321/product/add
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzgzMTEwNDQsImlhdCI6MTY3ODMwMzg0NCwiVXNlcklEIjoxfQ.SZMhG-OSSBHqHir2gNFHvQIgJyeszXLZYscA8q3LhTw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzgzNjU2NTksImlhdCI6MTY3ODM1ODQ1OSwiVXNlcklEIjoxfQ.aVgtOs2XOIUeZbaNu_dAOQpUNAczSJpyh4k6RpJNMgg
 
 {
 "title": "Laptop",
 "sellerId": 1,
 "price":14.25
 }
+
+###
+
+DELETE http://localhost:4321/product/delete?id=2
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzgzNjU2NTksImlhdCI6MTY3ODM1ODQ1OSwiVXNlcklEIjoxfQ.aVgtOs2XOIUeZbaNu_dAOQpUNAczSJpyh4k6RpJNMgg
+
+{}
 

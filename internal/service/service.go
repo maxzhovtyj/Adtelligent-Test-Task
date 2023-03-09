@@ -19,6 +19,7 @@ type Sellers interface {
 
 type Products interface {
 	Create(product models.Product) error
+	Delete(productID int) error
 }
 
 type Service struct {

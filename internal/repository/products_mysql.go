@@ -27,3 +27,14 @@ func (r *ProductsRepo) Create(product models.Product) error {
 
 	return nil
 }
+
+func (r *ProductsRepo) Delete(productID int) error {
+	queryDeleteProduct := fmt.Sprintf("DELETE FROM %s WHERE id = ?", productsTable)
+
+	_, err := r.db.Exec(queryDeleteProduct, productID)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}

@@ -24,9 +24,12 @@ func (h *Handler) Init() *http.ServeMux {
 	mux.HandleFunc("/auth/sign-in", h.signIn)
 	mux.HandleFunc("/auth/sign-up", h.signUp)
 
-	mux.HandleFunc("/seller", h.userIdentity(h.newSeller))
+	mux.HandleFunc("/seller/add", h.userIdentity(h.newSeller))
 
-	mux.HandleFunc("/product", h.userIdentity(h.newProduct))
+	mux.HandleFunc("/product/add", h.userIdentity(h.newProduct))
+	mux.HandleFunc("/product/get", h.userIdentity(h.getProduct))
+	mux.HandleFunc("/product/update", h.userIdentity(h.updateProduct))
+	mux.HandleFunc("/product/delete", h.userIdentity(h.deleteProduct))
 
 	return mux
 }
