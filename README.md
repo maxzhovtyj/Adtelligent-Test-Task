@@ -81,6 +81,8 @@ docker build -t app-migrator .
 docker run --network host app-migrator -path=/schema -database "mysql://root:qwerty123@tcp(localhost:3306)/adtelligent-db" up
 ```
 
+### [You can use api-test.http file to test handlers](api-test.http) 
+
 ### Possible improvements
 
 - Add /refresh handler
@@ -90,8 +92,11 @@ docker run --network host app-migrator -path=/schema -database "mysql://root:qwe
 ### Task 2 
 ### [Concat functions benchmark](task2)
 
-| Slice len | Basic        | With Join  | With Strings Builder |
-|-----------|--------------|------------|----------------------|
-| 100       | 154416 ns/op | 3420 ns/op | 3252 ns/op           |
-| 1000      | 13423015 ns/op            | 35641 ns/op          | 33679 ns/op                    |
-| 10000     | 1581037667 ns/op            | 343412 ns/op          | 319548 ns/op                    |
+| Slice len | Basic            | With Join    | With Strings Builder   |
+|-----------|------------------|--------------|------------------------|
+| 100       | 154416 ns/op     | 3420 ns/op   | 3252 ns/op             |
+| 1000      | 13423015 ns/op   | 35641 ns/op  | 33679 ns/op            |
+| 10000     | 1581037667 ns/op | 343412 ns/op | 319548 ns/op           |
+
+### If you have any questions feel free to contact me
+### Telegram: @maxzhovtyj

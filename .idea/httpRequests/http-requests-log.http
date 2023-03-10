@@ -4,6 +4,110 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Nzg0NDM0N
 
 {}
 
+<> 2023-03-10T105717.500.txt
+
+###
+
+DELETE http://localhost:3000/product/delete?id=1
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Nzg0NDM0NjQsImlhdCI6MTY3ODQzNjI2NCwiVXNlcklEIjoxfQ.6dotDkJqAtsR-wkFN_NpmShrIUtY1Mm3vKF5xYz88CQ
+
+{}
+
+<> 2023-03-10T105712.200.txt
+
+###
+
+GET http://localhost:3000/product/get?id=1
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Nzg0NDM0NjQsImlhdCI6MTY3ODQzNjI2NCwiVXNlcklEIjoxfQ.6dotDkJqAtsR-wkFN_NpmShrIUtY1Mm3vKF5xYz88CQ
+
+{}
+
+<> 2023-03-10T105704.200.json
+
+###
+
+PUT http://localhost:3000/product/update
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Nzg0NDM0NjQsImlhdCI6MTY3ODQzNjI2NCwiVXNlcklEIjoxfQ.6dotDkJqAtsR-wkFN_NpmShrIUtY1Mm3vKF5xYz88CQ
+
+{
+"id": 1,
+"title": "Laptop Updated",
+"sellerId": 1,
+"price": 15
+}
+
+<> 2023-03-10T105659.200.json
+
+###
+
+GET http://localhost:3000/product/get?id=1
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Nzg0NDM0NjQsImlhdCI6MTY3ODQzNjI2NCwiVXNlcklEIjoxfQ.6dotDkJqAtsR-wkFN_NpmShrIUtY1Mm3vKF5xYz88CQ
+
+{}
+
+<> 2023-03-10T105655.200.json
+
+###
+
+POST http://localhost:3000/product/add
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Nzg0NDM0NjQsImlhdCI6MTY3ODQzNjI2NCwiVXNlcklEIjoxfQ.6dotDkJqAtsR-wkFN_NpmShrIUtY1Mm3vKF5xYz88CQ
+
+{
+"title": "Laptop",
+"sellerId": 1,
+"price":14.25
+}
+
+<> 2023-03-10T105650.200.json
+
+###
+
+POST http://localhost:3000/seller/add
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Nzg0NDM0NjQsImlhdCI6MTY3ODQzNjI2NCwiVXNlcklEIjoxfQ.6dotDkJqAtsR-wkFN_NpmShrIUtY1Mm3vKF5xYz88CQ
+
+{
+"name":"Max",
+"phoneNumber":"+380683062975"
+}
+
+<> 2023-03-10T105646.200.txt
+
+###
+
+POST http://localhost:3000/auth/sign-in
+Accept: application/json
+
+{
+"email": "test@gmail.com",
+"password":"qwerty123"
+}
+
+<> 2023-03-10T105641.200.json
+
+###
+
+POST http://localhost:3000/auth/sign-up
+Accept: application/json
+
+{
+"email": "test@gmail.com",
+"password":"qwerty123"
+}
+
+###
+
+GET http://localhost:3000/product/get?id=1
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Nzg0NDM0NjQsImlhdCI6MTY3ODQzNjI2NCwiVXNlcklEIjoxfQ.6dotDkJqAtsR-wkFN_NpmShrIUtY1Mm3vKF5xYz88CQ
+
+{}
+
 <> 2023-03-10T101922.500.txt
 
 ###
@@ -432,72 +536,6 @@ POST http://localhost:4321/ping
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzgyOTg1MDYsImlhdCI6MTY3ODI5MTMwNiwiVXNlcklEIjoxfQ.qGnc-zP_C2icGPZMCSZdbLR1ZUkoolpwxjy4FzhiHDs
 
 <> 2023-03-08T182237.400.txt
-
-###
-
-POST http://localhost:4321/ping
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzgyOTg1MDYsImlhdCI6MTY3ODI5MTMwNiwiVXNlcklEIjoxfQ.qGnc-zP_C2icGPZMCSZdbLR1ZUkoolpwxjy4FzhiHDs
-
-###
-
-GET http://localhost:4321/ping
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzgyOTg1MDYsImlhdCI6MTY3ODI5MTMwNiwiVXNlcklEIjoxfQ.qGnc-zP_C2icGPZMCSZdbLR1ZUkoolpwxjy4FzhiHDs
-
-<> 2023-03-08T180627.400.txt
-
-###
-
-POST http://localhost:4321/ping
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzgyOTg1MDYsImlhdCI6MTY3ODI5MTMwNiwiVXNlcklEIjoxfQ.qGnc-zP_C2icGPZMCSZdbLR1ZUkoolpwxjy4FzhiHDs
-
-<> 2023-03-08T180619.400.txt
-
-###
-
-POST http://localhost:4321/ping
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzgyOTg1MDYsImlhdCI6MTY3ODI5MTMwNiwiVXNlcklEIjoxfQ.qGnc-zP_C2icGPZMCSZdbLR1ZUkoolpwxjy4FzhiHDs
-
-<> 2023-03-08T180438.400.txt
-
-###
-
-POST http://localhost:4321/ping
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzgyOTg1MDYsImlhdCI6MTY3ODI5MTMwNiwiVXNlcklEIjoxfQ.qGnc-zP_C2icGPZMCSZdbLR1ZUkoolpwxjy4FzhiHDs
-
-<> 2023-03-08T180406.400.txt
-
-###
-
-POST http://localhost:4321/ping
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzgyOTg1MDYsImlhdCI6MTY3ODI5MTMwNiwiVXNlcklEIjoxfQ.qGnc-zP_C2icGPZMCSZdbLR1ZUkoolpwxjy4FzhiHDs
-
-<> 2023-03-08T180324.400.txt
-
-###
-
-POST http://localhost:4321/ping
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzgyOTg1MDYsImlhdCI6MTY3ODI5MTMwNiwiVXNlcklEIjoxfQ.qGnc-zP_C2icGPZMCSZdbLR1ZUkoolpwxjy4FzhiHDs
-
-<> 2023-03-08T180232.400.txt
-
-###
-
-POST http://localhost:4321/ping
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzgyOTg1MDYsImlhdCI6MTY3ODI5MTMwNiwiVXNlcklEIjoxfQ.qGnc-zP_C2icGPZMCSZdbLR1ZUkoolpwxjy4FzhiHDs
-
-<> 2023-03-08T180225.401.txt
-
-###
-
-POST http://localhost:4321/auth/sign-in
-Accept: application/json
-
-{
-"email": "test@gmail.com",
-"password":"qwerty123"
-}
-
-<> 2023-03-08T180146.200.json
 
 ###
 
