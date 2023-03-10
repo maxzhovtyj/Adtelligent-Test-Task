@@ -12,11 +12,8 @@ services:
   db:
     image: mysql/mysql-server:latest
     restart: always
-    environment:
-      MYSQL_DATABASE: 'adtelligent-db'
-      MYSQL_USER: 'root'
-      MYSQL_PASSWORD: 'qwerty123'
-      MYSQL_ROOT_PASSWORD: 'qwerty123'
+    env_file:
+      - variables.env
     ports:
       - '3306:3306'
     expose:

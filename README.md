@@ -42,16 +42,23 @@ func concat(str []string) string  {
 
 ### Task 1. HTTP Server
 
-Create .env file with the following values
-
+Create .env file with the following example values
 ```dotenv
-HTTP_HOST=<host>
+HTTP_HOST=localhost
 
-DB_USER=<db_user>
-DB_PASSWORD=<db_password>
+DB_USER=root
+DB_PASSWORD=qwerty123
 
-JWT_SIGNING_KEY=<signign_key>
-PASSWORD_SALT=<password_salt>
+JWT_SIGNING_KEY=1Ak3$$16:-=,l}d{s[a,dSDdA.>3.1/
+PASSWORD_SALT=2B@K252@lK0-1\;ds-/pP
+```
+
+And variables.env file for docker-compose 
+```dotenv
+MYSQL_DATABASE=adtelligent-db
+MYSQL_USER=root
+MYSQL_PASSWORD=qwerty123
+MYSQL_ROOT_PASSWORD=qwerty123
 ```
 
 ### Steps to run the app
@@ -73,6 +80,12 @@ docker build -t app-migrator .
 ```shell
 docker run --network host app-migrator -path=/schema -database "mysql://root:qwerty123@tcp(localhost:3306)/adtelligent-db" up
 ```
+
+### Possible improvements
+
+- Add /refresh handler
+- Do NOT use float64 for money
+- Do NOT store env file values in README
 
 ### Task 2 
 ### [Concat functions benchmark](task2)
