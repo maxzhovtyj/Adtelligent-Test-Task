@@ -54,16 +54,28 @@ JWT_SIGNING_KEY=<signign_key>
 PASSWORD_SALT=<password_salt>
 ```
 
-Run MySQL database in Docker container
+### Steps to run the app
+
+Run docker-compose file
+```shell
+docker-compose up -d --build app
+```
+
+Apply migrations to database
+```shell
+cd ./migrator
+```
 
 ```shell
-docker run -d -p 3306:3306 --name adtelligent-db -e MYSQL_ROOT_PASSWORD=<rootPassword> -e MYSQL_DATABASE=<database> -e MYSQL_USER=<user> -e MYSQL_PASSWORD=<password> mysql/mysql-server:latest
+docker build -t app-migrator .
+```
+
+```shell
+docker run --network host app-migrator -path=/schema -database "mysql://root:qwerty123@tcp(localhost:3306)/adtelligent-db" up
 ```
 
 ### Task 2 
 ### [Concat functions benchmark](task2)
-
-
 
 | Slice len | Basic        | With Join  | With Strings Builder |
 |-----------|--------------|------------|----------------------|

@@ -9,6 +9,6 @@ auth:
   refreshTokenTTL: 720h # 30 days
 
 db:
-  name: adtelligent
+  name: adtelligent-db
   host: db
   port: 3306

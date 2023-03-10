@@ -18,9 +18,9 @@ Accept: application/json
 
 ###
 
-POST http://localhost:3000/seller
+POST http://localhost:3000/seller/add
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzgzMDYzMTAsImlhdCI6MTY3ODI5OTExMCwiVXNlcklEIjoxfQ.xJ3iQq2GaWDYYKwuYFEl25bZ25cAlcD5FVDUDU8kFJU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Nzg0NDM0NjQsImlhdCI6MTY3ODQzNjI2NCwiVXNlcklEIjoxfQ.6dotDkJqAtsR-wkFN_NpmShrIUtY1Mm3vKF5xYz88CQ
 
 {
 "name":"Max",
@@ -31,7 +31,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzgzMDYzM
 
 POST http://localhost:3000/product/add
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzgzNjU2NTksImlhdCI6MTY3ODM1ODQ1OSwiVXNlcklEIjoxfQ.aVgtOs2XOIUeZbaNu_dAOQpUNAczSJpyh4k6RpJNMgg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Nzg0NDM0NjQsImlhdCI6MTY3ODQzNjI2NCwiVXNlcklEIjoxfQ.6dotDkJqAtsR-wkFN_NpmShrIUtY1Mm3vKF5xYz88CQ
 
 {
 "title": "Laptop",
@@ -41,17 +41,17 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzgzNjU2N
 
 ###
 
-DELETE http://localhost:3000/product/delete?id=2
+DELETE http://localhost:3000/product/delete?id=1
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzgzNjU2NTksImlhdCI6MTY3ODM1ODQ1OSwiVXNlcklEIjoxfQ.aVgtOs2XOIUeZbaNu_dAOQpUNAczSJpyh4k6RpJNMgg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Nzg0NDM0NjQsImlhdCI6MTY3ODQzNjI2NCwiVXNlcklEIjoxfQ.6dotDkJqAtsR-wkFN_NpmShrIUtY1Mm3vKF5xYz88CQ
 
 {}
 
 ###
 
-GET http://localhost:3000/product/get?id=3
+GET http://localhost:3000/product/get?id=1
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzgzNjU2NTksImlhdCI6MTY3ODM1ODQ1OSwiVXNlcklEIjoxfQ.aVgtOs2XOIUeZbaNu_dAOQpUNAczSJpyh4k6RpJNMgg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Nzg0NDM0NjQsImlhdCI6MTY3ODQzNjI2NCwiVXNlcklEIjoxfQ.6dotDkJqAtsR-wkFN_NpmShrIUtY1Mm3vKF5xYz88CQ
 
 {}
 
@@ -59,10 +59,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzgzNjU2N
 
 PUT http://localhost:3000/product/update
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzgzNjU2NTksImlhdCI6MTY3ODM1ODQ1OSwiVXNlcklEIjoxfQ.aVgtOs2XOIUeZbaNu_dAOQpUNAczSJpyh4k6RpJNMgg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Nzg0NDM0NjQsImlhdCI6MTY3ODQzNjI2NCwiVXNlcklEIjoxfQ.6dotDkJqAtsR-wkFN_NpmShrIUtY1Mm3vKF5xYz88CQ
 
 {
-"id": 3,
+"id": 1,
 "title": "Laptop Updated",
 "sellerId": 1,
 "price": 15
