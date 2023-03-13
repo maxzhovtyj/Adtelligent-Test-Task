@@ -1,6 +1,24 @@
-1. Вибрати продавців і кількість їхніх товарів
-2. Всіх покупців і кількість грошей, які вони витратили 
-3. Переробити сутність orders
+1. Вибрати продавців і кількість їхніх товарів - DONE
+
+SELECT
+    sellers.id,
+    sellers.name,
+    sellers.phone_number,
+    (SELECT COUNT(products.id) FROM products WHERE seller_id = sellers.id) as products_count
+FROM sellers;
+
+2. Всіх покупців і кількість грошей, які вони витратили - DONE
+
+SELECT customers.id,
+       customers.name,
+       customers.phone_number,
+       (SELECT SUM(p.price)
+        FROM orders_products
+                 LEFT JOIN products p on p.id = orders_products.product_id
+        WHERE order_id IN (SELECT id FROM orders WHERE customer_id = customers.id)) as total_expense
+FROM customers;
+
+3. Переробити сутність orders - DONE
 
 канали, buf.
 
